@@ -1,7 +1,16 @@
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 
 
 export const Navbar = () => {
+
+    const navigation = useNavigate()
+
+    const handleLogout = ()=>{
+        navigation('/auth',{
+            replace: true
+        })
+    }
+
     return (
         <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
             
@@ -16,14 +25,14 @@ export const Navbar = () => {
                 <div className="navbar-nav">
 
                     <NavLink 
-                        className="nav-item nav-link" 
+                        className={ ({isActive})=> `nav-item nav-link ${isActive ? 'active' : ''}` }
                         to="/marvel"
                     >
                         Marvel
                     </NavLink>
 
                     <NavLink 
-                        className="nav-item nav-link" 
+                        className={ ({isActive})=> `nav-item nav-link ${isActive ? 'active' : ''}` } 
                         to="/dc"
                     >
                         DC
@@ -31,14 +40,17 @@ export const Navbar = () => {
                 </div>
             </div>
 
-            <div className="navbar-collapse collapse w-100 order-3 dual-collapse2">
-                <ul className="navbar-nav ml-auto">
-                    <NavLink 
-                        className="nav-item nav-link" 
-                        to="/auth"
+            <div className="navbar-collapse collapse w-100 order-3 dual-collapse2 d-flex justify-content-end">
+                <ul className="navbar-nav ml-auto text-end">
+                    <span className='nav-item nav-link text-primary'>
+                        Cesar
+                    </span>
+                    <button
+                    className='nav-item nav-link btn'
+                    onClick={handleLogout}
                     >
                         Logout
-                    </NavLink>
+                    </button>
                 </ul>
             </div>
         </nav>
