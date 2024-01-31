@@ -1,14 +1,31 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import { useNavigate } from 'react-router-dom'
+import { AuhtContext } from '../../auth/AuhtContext.';
+import { types } from '../../types/type';
 
-export const LoginScreen = ({history}) => {
+export const LoginScreen = () => {
+
+  const {dispatch} = useContext(AuhtContext);
 
   const navigator = useNavigate();
 
   const handleLogin = ()=>{
+
+    const login ={
+      name: 'Cesar',
+      logged: true
+    }
+
+    dispatch({
+      type: types.login,
+      payload: login
+    })
+
     navigator('/',{
       replace: true
     })
+
+
   }
 
 
