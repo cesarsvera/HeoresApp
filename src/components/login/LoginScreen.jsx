@@ -6,6 +6,7 @@ import { types } from '../../types/type';
 export const LoginScreen = () => {
 
   const {dispatch} = useContext(AuhtContext);
+  const lastPath = localStorage.getItem('lastPath') || '/'
 
   const navigator = useNavigate();
 
@@ -21,7 +22,7 @@ export const LoginScreen = () => {
       payload: login
     })
 
-    navigator('/',{
+    navigator(`${lastPath}`,{
       replace: true
     })
 
